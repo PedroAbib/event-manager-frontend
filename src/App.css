@@ -1,0 +1,14 @@
+.layout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.navigation {
+  width: 238px;
+  border-right: 2px solid #D6D6D6;
+}
+
+.content {
+  flex: 1;
+}

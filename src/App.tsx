@@ -1,10 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
+import SideBar from './components/navigation/SideBar';
+import TopBar from './components/navigation/TopBar';
+import './App.css';
 
 function App() {
   return (
-    <div className="App">
-
+    <div className="layout">
+      <div className='navigation'>
+        <SideBar/>
+      </div>
+      <div className="content">
+        <TopBar/>
+        <main>
+          
+        </main>
+      </div>
     </div>
   );
 }
