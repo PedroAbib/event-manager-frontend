@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import logo from '../../assets/logo.png';
 import '../../styles/navigation/SideBar.css'
 import NavButton from '../buttons/NavButton';
