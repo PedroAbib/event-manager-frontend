@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SideBar from './components/navigation/SideBar';
 import TopBar from './components/navigation/TopBar';
 import './App.css';
 
-function App() {
+const App: React.FC = () => {
+  const [activePage, setActivePage] = useState<string>('Home')
+
   return (
     <div className="layout">
       <div className='navigation'>
-        <SideBar/>
+        <SideBar activePage={activePage} setActivePage={setActivePage}/>
       </div>
       <div className="content">
         <TopBar/>
