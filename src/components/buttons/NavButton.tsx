@@ -2,19 +2,21 @@ import React from 'react';
 import '../../styles/buttons/NavButton.css';
 
 interface NavButtonProps {
-    icon: string;
+    icon: JSX.Element;
     label: string;
-    //onClick
+    isActive: boolean;
+    onClick: () => void;
 }
 
-const NavButton: React.FC<NavButtonProps> = ({ icon, label }) => {
+const NavButton: React.FC<NavButtonProps> = ({ icon, label, isActive, onClick }) => {
+    const iconStyle = { color: isActive ? '#17c500' : ''};
+    
     return(
         <div className='nav-button-box'>
-            <button className='nav-button'>
-                <div className='icon-box'>
-                    <img src={icon}/>
+            <button className={`nav-button ${isActive ? 'active' : ''}`} onClick={onClick}>
+                <div className='icon-box' style={iconStyle}>
+                    {icon}
                 </div>
-                
                 <span>{label}</span>
             </button>
         </div>
