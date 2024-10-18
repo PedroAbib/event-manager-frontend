@@ -12,7 +12,7 @@ const App: React.FC = () => {
         <SideBar activePage={activePage} setActivePage={setActivePage}/>
       </div>
       <div className="content">
-        <TopBar/>
+        <TopBar title={activePage}/>
         <main>
           
         </main>
