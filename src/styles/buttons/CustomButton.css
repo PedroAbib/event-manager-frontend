@@ -1,0 +1,24 @@
+.custom-button span {
+    margin: 0 20px;
+    padding: 0;
+    display: block;
+}
+
+.custom-button {
+    background-color: var(--button-color);
+    height: 46px;
+    min-width: 116px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: filter 0.4s;
+    color: white;
+}
+
+.custom-button:hover {
+    filter: brightness(1.1)
+}
+
+.custom-button:active {
+    filter: brightness(0.9);
+}
