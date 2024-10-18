@@ -13,7 +13,7 @@ const App: React.FC = () => {
       </div>
       <div className="content">
         <TopBar title={activePage}/>
-        <main>
+        <main className='main-content'>
           
         </main>
       </div>
