@@ -1,10 +1,23 @@
-import '../../styles/navigation/TopBar.css'
+import '../../styles/navigation/TopBar.css';
+import CustomButton from '../buttons/CustomButton';
 
-function TopBar() {
+interface TopBarProps {
+    title: string;
+}
+
+const TopBar: React.FC<TopBarProps> = ({ title }) => {
     return(
         <div className='top-bar'>
             <div className='title-box'>
-                <h1 className='title'>(Insert title here)</h1>
+                <h1 className='title'>{title}</h1>
+            </div>
+
+            <div className='controls-box'>
+                <CustomButton
+                    label='Add new'
+                    onClick={() => {}}
+                    color='#17C500'
+                />
             </div>
         </div>
     )
