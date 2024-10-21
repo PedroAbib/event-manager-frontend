@@ -8,6 +8,10 @@ interface SideBarProps {
     setActivePage: (page: string) => void;
 }
 
+const page1 = 'Home';
+const page2 = 'Registrants';
+const page3 = 'Events';
+
 const SideBar: React.FC<SideBarProps> = ({ activePage, setActivePage }) => {
 
     const handleButtonClick = (page: string) => {
@@ -25,21 +29,21 @@ const SideBar: React.FC<SideBarProps> = ({ activePage, setActivePage }) => {
             <div>
                 <NavButton
                     icon={<LuHome size={iconSize}/>}
-                    label='Home'
-                    isActive={activePage === 'Home' ? true : false}
-                    onClick={() => handleButtonClick('Home')}
+                    label={page1}
+                    isActive={activePage === page1 ? true : false}
+                    onClick={() => handleButtonClick(page1)}
                 />
                 <NavButton
                     icon={<LuUsers size={iconSize}/>}
-                    label='Registrants'
-                    isActive={activePage === 'Registrants' ? true : false}
-                    onClick={() => handleButtonClick('Registrants')}
+                    label={page2}
+                    isActive={activePage === page2 ? true : false}
+                    onClick={() => handleButtonClick(page2)}
                 />
                 <NavButton
                     icon={<LuCalendarDays size={iconSize}/>}
-                    label='Events'
-                    isActive={activePage === 'Events' ? true : false}
-                    onClick={() => handleButtonClick('Events')}
+                    label={page3}
+                    isActive={activePage === page3 ? true : false}
+                    onClick={() => handleButtonClick(page3)}
                 />
                 
             </div>
