@@ -26,4 +26,5 @@
 
 .data-row:hover {
     background-color: rgba(241, 241, 243, 0.901);
+    cursor: pointer;
 }
