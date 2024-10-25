@@ -23,7 +23,7 @@ const SideBar: React.FC<SideBarProps> = ({ activePage, setActivePage }) => {
     return (
         <div>
             <div className='logo-box'>
-                <img src={logo}/>
+                <img alt="logo" src={logo}/>
             </div>
 
             <div>

@@ -3,6 +3,7 @@ import '../../styles/navigation/Popover.css'
 import Modal from '../Modal';
 import PopoverButton from '../buttons/PopoverButton';
 import { LuPlusCircle } from "react-icons/lu";
+import RegistrantsForm from '../data/RegistrantsForm';
 
 interface PopoverProps {
     isPopoverOpen: boolean;
@@ -67,29 +68,28 @@ const Popover: React.FC<PopoverProps> = ({ isPopoverOpen, onClosePopover }) => {
                 </div>
             )}
 
-                {openModal === modal1 && (
-                    <Modal
-                        isOpen={true} 
-                        onClose={handleCloseModal} 
-                        title={modal1}
-                    >
-                        <p>This is the modal content!</p>
-                        
-                    </Modal>
-                )}
+            {openModal === modal1 && (
+                <Modal
+                    isOpen={true} 
+                    onClose={handleCloseModal} 
+                    title={modal1}
+                >
+                    <RegistrantsForm/>
+                    
+                </Modal>
+            )}
 
-                {openModal === modal2 && (
-                    <Modal
-                        isOpen={true} 
-                        onClose={handleCloseModal} 
-                        title={modal2}
-                    >
-                        <p>This is the modal content!</p>
+            {openModal === modal2 && (
+                <Modal
+                    isOpen={true}
+                    onClose={handleCloseModal}
+                    title={modal2}
+                >
+                    <p>This is the modal content!</p>
 
-                    </Modal>
-                )}
+                </Modal>
+            )}
             
-
         </div>
     );
 };
