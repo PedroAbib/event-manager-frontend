@@ -40,18 +40,7 @@
     cursor: pointer;
 }
 
-.modal-buttons {
+.submit-container {
     display: flex;
-    justify-content: right;
-    align-items: center;
-}
-
-.cancel-button {
-    border: none;
-    background-color: white;
-    color: red;
-    cursor: pointer;
-    font-size: 14px;
-    margin-right: 15px;
-    height: 16px;
+    justify-content: flex-end;
 }

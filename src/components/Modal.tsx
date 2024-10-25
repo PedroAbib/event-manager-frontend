@@ -1,6 +1,5 @@
 import React from "react";
 import '../styles/Modal.css'
-import CustomButton from "./buttons/CustomButton";
 
 interface ModalProps {
     isOpen: boolean;
@@ -24,15 +23,6 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
 
                 <div className="modal-body">
                     {children}
-                </div>
-
-                <div className="modal-buttons">
-                    <button className="cancel-button" onClick={onClose}>Cancel</button>
-                    <CustomButton
-                    label='Save'
-                    onClick={() => {}}
-                    color='#17C500'
-                    />
                 </div>
             </div>
         </div>
