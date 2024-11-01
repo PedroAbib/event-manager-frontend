@@ -1,34 +1,18 @@
-.form-card {
-    padding: 10px 15px;
-    height: 48px;
+.form-container {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.submit-container {
     display: flex;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.1);
-    align-items: left;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
-.form-label {
-    width: 85%;
+.error-message {
+    position: relative;
     font-size: 14px;
-    color: #707070;
-    margin-bottom: 5px;
-}
-
-.form-input {
-    font-size: 16px;
-    height: 16px;
-    width: 85%;
-    border: none;
-}
-
-.form-input:focus {
-    outline: none;
-    border: none;
-}
-
-.form-input::placeholder {
-    font-weight: bold;
+    font-weight: 600;
+    color: rgb(245, 40, 40);
+    margin-left: 20px;
+    margin-bottom: 0;
 }
