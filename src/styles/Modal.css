@@ -15,8 +15,8 @@
     background: white;
     padding: 20px;
     border-radius: 10px;
-    width: 400px;
-    max-width: 100%;
+    min-width: 420px;
+    max-width: 90%;
     position: relative;
 }
 
@@ -38,9 +38,4 @@
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-}
-
-.submit-container {
-    display: flex;
-    justify-content: flex-end;
 }
