@@ -74,7 +74,7 @@ const Popover: React.FC<PopoverProps> = ({ isPopoverOpen, onClosePopover }) => {
                     onClose={handleCloseModal} 
                     title={modal1}
                 >
-                    <RegistrantsForm/>
+                    <RegistrantsForm onCloseModalAfterSubmit={handleCloseModal}/>
                     
                 </Modal>
             )}
