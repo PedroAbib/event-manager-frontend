@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../../styles/data/CustomTable.css'
 import SearchBar from './SearchBar';
+import Modal from '../Modal';
+import Profile from '../../pages/Profile';
 
 interface CustomTableProps {
     columns: string[];
@@ -9,12 +11,21 @@ interface CustomTableProps {
 
 const CustomTable: React.FC<CustomTableProps> = ({ columns, data }) => {
     const [searchTerm, setSearchTerm] = useState<string>('');
+    const [openProfileModal, setProfileModal] = useState<object | null>(null);
 
     const filteredData = data.filter((row) =>
         columns.some((column) =>
             row[column].toString().toLowerCase().includes(searchTerm.toLowerCase())
         )
     );
+
+    const handleOpenProfileModal = (entity : object) => {
+        setProfileModal(entity);
+    }
+
+    const handleCloseProfileModal = () => {
+        setProfileModal(null);
+    }
 
     return(
 
@@ -31,7 +42,10 @@ const CustomTable: React.FC<CustomTableProps> = ({ columns, data }) => {
                 </thead>
                 <tbody className='custom-table-data-container'>
                     {filteredData.map((row, rowIndex) => (
-                        <tr key={rowIndex} className='data-row'>
+                        <tr
+                            key={rowIndex} className='data-row'
+                            onClick={() => handleOpenProfileModal(row)}
+                        >
                             {columns.map((column, colIndex) => (
                                 <td key={colIndex}>{row[column]}</td>
                             ))}
@@ -39,6 +53,15 @@ const CustomTable: React.FC<CustomTableProps> = ({ columns, data }) => {
                     ))}
                 </tbody>
             </table>
+
+            {openProfileModal != null && (
+                <Modal
+                    title={Object.values(openProfileModal)[0]}
+                    onClose={handleCloseProfileModal}
+                >
+                    <Profile entityData={openProfileModal}/>
+                </Modal>
+            )}
         </div>
     )
 }
