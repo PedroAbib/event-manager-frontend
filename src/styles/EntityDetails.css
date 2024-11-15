@@ -1,0 +1,47 @@
+.entity-data-container {
+    padding: 10px 15px;
+    height: 48px;
+    width: 400px;
+    display: flex;
+    margin: 5px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.1);
+    align-items: left;
+    justify-content: space-between;
+}
+
+.entity-data-key {
+    margin-left: 0;
+    width: 85%;
+    font-size: 14px;
+    color: #707070;
+    margin-bottom: 5px;
+}
+
+.entity-data-value {
+    margin-left: 0;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.entity-ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    padding: 0;
+    max-height: 100%;
+    max-width: 100%;
+    overflow-y: auto;
+}
+
+.entity-labels {
+    display: flex;
+    flex-direction: column;
+}
+
+.entity-edit-button {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
