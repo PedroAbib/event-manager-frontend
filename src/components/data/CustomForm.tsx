@@ -14,15 +14,14 @@ interface Field {
 
 interface CustomFormProps {
     fields: Field[];
-    onCloseModalAfterSubmit: () => void;
+    onSubmitData: (data: object) => void;
 }
 
-const CustomForm: React.FC<CustomFormProps> = ({ fields, onCloseModalAfterSubmit }) => {
+const CustomForm: React.FC<CustomFormProps> = ({ fields, onSubmitData }) => {
     const { register, handleSubmit, formState: { errors }} = useForm();
 
-    const onSubmit = (data : object) => {
-        console.log(data)
-        onCloseModalAfterSubmit()
+    const onSubmit = (data: object) => {
+        onSubmitData(data);
     }
 
     return(
@@ -73,7 +72,7 @@ const CustomForm: React.FC<CustomFormProps> = ({ fields, onCloseModalAfterSubmit
                                     required: 'Phone number is required',
                                     minLength: {value: 11, message: 'Phone number must be at least 11 characters long.'}
                                 }
-                                )}    
+                                )}
                             />
                         )}
                     </div>
