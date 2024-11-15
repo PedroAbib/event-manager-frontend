@@ -70,7 +70,6 @@ const Popover: React.FC<PopoverProps> = ({ isPopoverOpen, onClosePopover }) => {
 
             {openModal === modal1 && (
                 <Modal
-                    isOpen={true} 
                     onClose={handleCloseModal} 
                     title={modal1}
                 >
@@ -81,7 +80,6 @@ const Popover: React.FC<PopoverProps> = ({ isPopoverOpen, onClosePopover }) => {
 
             {openModal === modal2 && (
                 <Modal
-                    isOpen={true}
                     onClose={handleCloseModal}
                     title={modal2}
                 >
