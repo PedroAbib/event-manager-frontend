@@ -6,6 +6,10 @@ interface RegistrantsFormProps {
 }
 
 const RegistrantsForm : React.FC<RegistrantsFormProps> = ({ onCloseModalAfterSubmit }) => {
+    const handleFormData = (data: object) => {
+        console.log(data)
+        onCloseModalAfterSubmit();
+    }
 
     const fields = [
         { name: "name", label: "Full Name"},
@@ -18,8 +22,8 @@ const RegistrantsForm : React.FC<RegistrantsFormProps> = ({ onCloseModalAfterSub
     return(
         <div>
             <CustomForm
+                onSubmitData={handleFormData}
                 fields={fields}
-                onCloseModalAfterSubmit={onCloseModalAfterSubmit}
             />
         </div>
     )
