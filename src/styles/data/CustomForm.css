@@ -1,8 +1,3 @@
-.form-container {
-    max-height: 80vh;
-    overflow-y: auto;
-}
-
 .submit-container {
     display: flex;
     justify-content: flex-end;
