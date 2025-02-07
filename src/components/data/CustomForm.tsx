@@ -1,82 +1,65 @@
 import React from "react";
 import '../../styles/data/CustomForm.css';
 import CustomButton from "../buttons/CustomButton";
-import { useForm } from 'react-hook-form';
+import { FieldValues, Path, useForm } from 'react-hook-form';
 import InputName from "./InputName";
 import InputCPF from "./InputCPF";
 import InputEmail from "./InputEmail";
 import InputPhoneNumber from "./InputPhoneNumber";
 
-interface Field {
-    name: string;
+export interface Field<T> {
+    name: Path<T>;
     label: string;
+    type: "text" | "email" | "cpf" | "phone";
+    validation?: Record<string, any>;
 }
 
-interface CustomFormProps {
-    fields: Field[];
-    onSubmitData: (data: object) => void;
+interface CustomFormProps<T extends FieldValues> {
+    fields: Field<T>[];
+    onSubmitData: (data: T) => void;
 }
 
-const CustomForm: React.FC<CustomFormProps> = ({ fields, onSubmitData }) => {
-    const { register, handleSubmit, formState: { errors }} = useForm();
+const CustomForm = <T extends FieldValues>({ fields, onSubmitData }: CustomFormProps<T>) => {
+    const { register, handleSubmit, formState: { errors }} = useForm<T>();
 
-    const onSubmit = (data: object) => {
+    const onSubmit = (data: T) => {
+        console.log(data)
         onSubmitData(data);
-    }
+    };
+
+    const inputComponents: Record<string, React.FC<any>> = {
+        text: InputName,
+        email: InputEmail,
+        cpf: InputCPF,
+        phone: InputPhoneNumber,
+    };
 
     return(
         <div className="form-container-div">
-            <form className="form-container">
-                {fields.map((field, index) => (
-                    <div key={index}>
+            <form onSubmit={handleSubmit(onSubmit)} className="form-container">
+                {fields.map((field, index) => {
+                    const InputComponent = inputComponents[field.type];
 
-                        {errors[field.name] && (
-                            <p className='error-message'>{errors[field.name]?.message as string}</p>
-                        )}
+                    if (!InputComponent) {
+                        console.error(`No input component found for type: ${field.type}`);
+                        return null;
+                    }
 
-                        {field.name === 'name' && (
-                            <InputName
+                    return(
+                        <div key={index}>
+                            {errors[field.name] && (
+                                <p className="error-message">
+                                    {errors[field.name]?.message as string}
+                                </p>
+                            )}
+
+                            <InputComponent
                                 label={field.label}
-                                register={register(field.name, {
-                                    required: 'Name is required',
-                                    minLength: { value: 3, message: 'Name must be at least 3 characters long'}
-                                })}
+                                register={register(field.name, field.validation)}
                             />
-                        )}
-                        {field.name === 'tag-name' && (
-                            <InputName
-                                label={field.label}
-                                register={register(field.name)}   
-                            />
-                        )}
-                        {field.name === 'cpf' && (
-                            <InputCPF
-                                label={field.label}
-                                register={register(field.name, {
-                                    required: 'CPF is required',
-                                    minLength: { value: 11, message: 'CPF must be at least 11 characters long'}
-                                }
-                                )}
-                            />
-                        )}
-                        {field.name === 'email' && (
-                            <InputEmail
-                                label={field.label}
-                                register={register(field.name)}
-                            />
-                        )}
-                        {field.name === 'phone-number' && (
-                            <InputPhoneNumber
-                                label={field.label}
-                                register={register(field.name, {
-                                    required: 'Phone number is required',
-                                    minLength: {value: 11, message: 'Phone number must be at least 11 characters long.'}
-                                }
-                                )}
-                            />
-                        )}
-                    </div>
-                ))}
+                        </div>
+                    );
+                })}
 
                 <div className='submit-container'>
                     <CustomButton
