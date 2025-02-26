@@ -56,7 +56,7 @@ const CustomTable: React.FC<CustomTableProps> = ({ columns, data }) => {
 
             {openProfileModal != null && (
                 <Modal
-                    title={Object.values(openProfileModal)[0]}
+                    title={Object.values(openProfileModal)[1]}
                     onClose={handleCloseProfileModal}
                 >
                     <Profile entityData={openProfileModal}/>
