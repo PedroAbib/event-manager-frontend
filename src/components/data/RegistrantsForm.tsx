@@ -1,21 +1,17 @@
 import React from "react";
 import CustomForm, { Field } from "./CustomForm";
 import { Registrant } from "../../interfaces/Registrant";
-import axios from "axios";
+import { useRegistrants } from "../../hooks/useRegistrants";
 
 interface RegistrantsFormProps {
     onCloseModalAfterSubmit: () => void;
 }
 
 const RegistrantsForm : React.FC<RegistrantsFormProps> = ({ onCloseModalAfterSubmit }) => {
+    const { addRegistrant } = useRegistrants();
+
     const handleFormData = (data: Registrant) => {
-        axios.post('http://localhost:8080/person', data)
-        .then(response => {
-            console.log('Response:', response);
-        })
-        .catch(error => {
-            console.log('Error:', error);
-        });
+        addRegistrant(data);
 
         onCloseModalAfterSubmit();
     }
