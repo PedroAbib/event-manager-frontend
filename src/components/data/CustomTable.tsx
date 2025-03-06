@@ -1,25 +1,34 @@
-import React, { useState } from 'react';
-import '../../styles/data/CustomTable.css'
+import { useState } from 'react';
+import '../../styles/data/CustomTable.css';
 import SearchBar from './SearchBar';
 import Modal from '../Modal';
 import Profile from '../../pages/Profile';
 
-interface CustomTableProps {
-    columns: string[];
-    data: Array<{ [key: string] : any}>;
+export interface Column<T> {
+    key: keyof T;
+    label: string;
 }
 
-const CustomTable: React.FC<CustomTableProps> = ({ columns, data }) => {
+interface CustomTableProps<T extends { id: string | number }> {
+    columns: Column<T>[];
+    data: T[];
+    titleKey: keyof T;
+    apiUrl: string;
+}
+
+const CustomTable = <T extends { id: string | number}>({ columns, data, titleKey, apiUrl }: CustomTableProps<T>) => {
+
     const [searchTerm, setSearchTerm] = useState<string>('');
-    const [openProfileModal, setProfileModal] = useState<object | null>(null);
+    const [openProfileModal, setProfileModal] = useState<T | null>(null);
 
     const filteredData = data.filter((row) =>
-        columns.some((column) =>
-            row[column].toString().toLowerCase().includes(searchTerm.toLowerCase())
-        )
+        columns.some((column) => {
+            const cellValue = row[column.key];
+            return cellValue ? cellValue.toString().toLowerCase().includes(searchTerm.toLowerCase()) : false;
+        })
     );
 
-    const handleOpenProfileModal = (entity : object) => {
+    const handleOpenProfileModal = (entity : T) => {
         setProfileModal(entity);
     }
 
@@ -35,19 +44,19 @@ const CustomTable: React.FC<CustomTableProps> = ({ columns, data }) => {
             <table className='custom-table'>
                 <thead>
                     <tr>
-                        {columns.map((column, index) => (
-                            <th key={index}>{column}</th>
+                        {columns.map((column) => (
+                            <th key={column.key.toString()}>{column.label}</th>
                         ))}
                     </tr>
                 </thead>
                 <tbody className='custom-table-data-container'>
-                    {filteredData.map((row, rowIndex) => (
+                    {filteredData.map((row) => (
                         <tr
-                            key={rowIndex} className='data-row'
+                            key={row.id} className='data-row'
                             onClick={() => handleOpenProfileModal(row)}
                         >
-                            {columns.map((column, colIndex) => (
-                                <td key={colIndex}>{row[column]}</td>
+                            {columns.map((column) => (
+                                <td key={column.key.toString()}>{row[column.key]?.toString()}</td>
                             ))}
                         </tr>
                     ))}
@@ -56,10 +65,10 @@ const CustomTable: React.FC<CustomTableProps> = ({ columns, data }) => {
 
             {openProfileModal != null && (
                 <Modal
-                    title={Object.values(openProfileModal)[1]}
+                    title={openProfileModal[titleKey] as string}
                     onClose={handleCloseProfileModal}
                 >
-                    <Profile entityData={openProfileModal}/>
+                    <Profile entityData={openProfileModal} closeModalAfterDelete={handleCloseProfileModal} apiUrl={apiUrl}/>
                 </Modal>
             )}
         </div>

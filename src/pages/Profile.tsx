@@ -1,18 +1,21 @@
-import React from "react";
 import EntityDetails from "../components/EntityDetails";
 import CustomButton from "../components/buttons/CustomButton";
-import { useRegistrants } from "../hooks/useRegistrants";
+import { useRequests } from "../hooks/useRequests";
 
-interface ProfileProps {
-    entityData: { [key: string]: any };
+interface ProfileProps<T extends { id: string | number }> {
+    entityData: T;
+    closeModalAfterDelete: () => void;
+    apiUrl: string;
 }
 
-const Profile: React.FC<ProfileProps> = ({ entityData }) => {
-    const { deleteRegistrant } = useRegistrants();
+const Profile = <T extends { id: string | number }>({ entityData, closeModalAfterDelete, apiUrl }: ProfileProps<T>) => {
+
+    const { deleteData } = useRequests<T>();
 
     const handleDelete = () => {
         if (window.confirm('Tem certeza que deseja deletar este registro?')) {
-            deleteRegistrant(entityData.id);
+            deleteData(apiUrl, String(entityData.id));
+            closeModalAfterDelete();
         }
     }
 
