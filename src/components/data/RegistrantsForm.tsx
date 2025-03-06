@@ -1,17 +1,21 @@
 import React from "react";
 import CustomForm, { Field } from "./CustomForm";
 import { Registrant } from "../../interfaces/Registrant";
-import { useRegistrants } from "../../hooks/useRegistrants";
+import { useRequests } from "../../hooks/useRequests";
+import { API_BASE_URL } from "../../config";
 
 interface RegistrantsFormProps {
     onCloseModalAfterSubmit: () => void;
 }
 
 const RegistrantsForm : React.FC<RegistrantsFormProps> = ({ onCloseModalAfterSubmit }) => {
-    const { addRegistrant } = useRegistrants();
+    
+    const registrantsUrl = `${API_BASE_URL}/person`;
+
+    const { addData } = useRequests<Registrant>();
 
     const handleFormData = (data: Registrant) => {
-        addRegistrant(data);
+        addData(registrantsUrl, data);
 
         onCloseModalAfterSubmit();
     }
