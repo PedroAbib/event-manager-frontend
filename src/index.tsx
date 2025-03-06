@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { RegistrantsProvider } from './contexts/RegistrantsContext';
+import { RequestsProvider } from './contexts/RequestsContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <RegistrantsProvider>
+    <RequestsProvider>
       <App />
-    </RegistrantsProvider>
+    </RequestsProvider>
   </React.StrictMode>
 );
