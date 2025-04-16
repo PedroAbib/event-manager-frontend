@@ -1,0 +1,13 @@
+.submit-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.error-message {
+    position: relative;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(245, 40, 40);
+    margin-left: 20px;
+    margin-bottom: 0;
+}

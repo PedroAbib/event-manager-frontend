@@ -1,9 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import SideBar from './components/navigation/SideBar';
+import TopBar from './components/navigation/TopBar';
+import './App.css';
+import RegistrantsPage from './pages/RegistrantsPage';
 
-function App() {
+const mainPage = 'Home';
+
+const App: React.FC = () => {
+  const [activePage, setActivePage] = useState<string>(mainPage);
+
   return (
-    <div className="App">
+    <div className="layout">
+
+      <div className='navigation'>
+        <SideBar activePage={activePage} setActivePage={setActivePage}/>
+      </div>
+
+      <div className="content">
+
+        <TopBar title={activePage}/>
+
+        <main className='main-content'>
+
+          {activePage === 'Home' && (
+            <div>
+              Implement Home Page
+            </div>
+          )}
+
+          {activePage === 'Registrants' && (
+            <RegistrantsPage/>
+          )}
+
+          {activePage === 'Events' && (
+            <div>
+              Implement Events Page
+            </div>
+          )}
+
+        </main>
+
+      </div>
 
     </div>
   );

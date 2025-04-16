@@ -1,0 +1,30 @@
+.popover-container {
+    position: relative;
+    left: -105%;
+    display: inline-block;
+  }
+  
+.popover-content {
+  position: absolute;
+  top: 100%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 10;
+  min-width: 200px;
+  max-width: 200px;
+  text-align: center;
+}
+
+.option-button {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.6s ease-out;
+}

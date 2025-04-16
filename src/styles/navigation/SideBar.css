@@ -1,0 +1,6 @@
+.logo-box {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    height: 100%;
+}

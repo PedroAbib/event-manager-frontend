@@ -1,0 +1,30 @@
+.custom-table-container {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-table td {
+    border-bottom: 1px solid #D6D6D6;
+    text-align: left;
+    padding: 10px 0px 10px 14px;
+}
+
+.custom-table th {
+    text-align: left;
+    border-bottom: 1px solid #D6D6D6;
+    padding: 20px 0px 5px 14px;
+}
+
+.data-row {
+    transition: 0.5s ease-out;
+}
+
+.data-row:hover {
+    background-color: rgba(241, 241, 243, 0.901);
+    cursor: pointer;
+}

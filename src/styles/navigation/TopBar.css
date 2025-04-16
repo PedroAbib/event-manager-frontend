@@ -1,0 +1,23 @@
+.top-bar {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    border-bottom: 2px solid #d6d6d6;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.title-box {
+    margin-left: 10px;
+    width: 300px;
+
+}
+
+.title {
+    font-size: 24px;
+    margin: 0;
+}
+
+.controls-box {
+    display: flex;
+}
