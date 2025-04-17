@@ -7,6 +7,7 @@ interface RequestsContextType<T extends { id: string | number }> {
     error: string | null;
     fetchData: (url: string) => Promise<void>;
     addData: (url: string, data: T) => Promise<void>;
+    updateData: (url: string, id: string | number, newData: Partial<T>) => Promise<void>;
     deleteData: (url: string, id: string) => Promise<void>;
 }
 
@@ -41,6 +42,19 @@ const RequestsProvider: React.FC<{ children: React.ReactNode }> = ({ children })
         }
     };
 
+    const updateData = async <T extends { id: string | number }>(url: string, id: string | number, newData: Partial<T>) => {
+        try {
+            const response = await axios.put(`${url}/${id}`, newData);
+            setData((prev)  => 
+                prev.map((item) => (item.id === id ? { ...item, ...newData } : item))
+            );
+            console.log(newData);
+        } catch (err) {
+            setError('Erro ao atualizar dado.');
+            console.error(err);
+        }
+    };
+
     const deleteData = async (url: string, id: string | number) => {
         try {
             await axios.delete(`${url}/${id}`);
@@ -52,7 +66,7 @@ const RequestsProvider: React.FC<{ children: React.ReactNode }> = ({ children })
     };
 
     return (
-        <RequestsContext.Provider value={{ data, loading, error, fetchData, addData, deleteData }}>
+        <RequestsContext.Provider value={{ data, loading, error, fetchData, addData, updateData, deleteData }}>
             {children}
         </RequestsContext.Provider>
     );

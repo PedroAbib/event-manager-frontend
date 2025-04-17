@@ -26,6 +26,14 @@
     margin-bottom: 5px;
 }
 
+.entity-data-input {
+    width: 85%;
+    margin-left: 0;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
 .entity-ul {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
@@ -38,6 +46,7 @@
 .entity-labels {
     display: flex;
     flex-direction: column;
+    width: 85%;
 }
 
 .entity-edit-button {

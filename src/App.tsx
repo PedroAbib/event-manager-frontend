@@ -3,6 +3,7 @@ import SideBar from './components/navigation/SideBar';
 import TopBar from './components/navigation/TopBar';
 import './App.css';
 import RegistrantsPage from './pages/RegistrantsPage';
+import EventsPage from './pages/EventsPage';
 
 const mainPage = 'Home';
 
@@ -33,9 +34,7 @@ const App: React.FC = () => {
           )}
 
           {activePage === 'Events' && (
-            <div>
-              Implement Events Page
-            </div>
+            <EventsPage/>
           )}
 
         </main>
