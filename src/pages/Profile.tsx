@@ -27,7 +27,7 @@ const Profile = <T extends { id: string | number }>({ entityData, closeModalAfte
                 color='#ed1e07'
             />
 
-            <EntityDetails entityData={entityData}/>
+            <EntityDetails entityData={entityData} apiUrl={apiUrl}/>
         </div>
     )
 }
