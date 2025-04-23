@@ -25,8 +25,8 @@ const RequestsProvider: React.FC<{ children: React.ReactNode }> = ({ children })
             const response = await axios.get(url);
             setData(response.data);
         } catch (err) {
-            setError('Erro ao carregar dados.');
-            console.log(err);
+            setError('Error fetching data.');
+            console.error(err);
         } finally {
             setLoading(false);
         }
@@ -37,7 +37,7 @@ const RequestsProvider: React.FC<{ children: React.ReactNode }> = ({ children })
             const response = await axios.post(url, newData);
             setData((prev) => [...prev, response.data]);
         } catch (err) {
-            setError('Erro ao adicionar novo dado.');
+            setError('Error adding new data.');
             console.error(err);
         }
     };
@@ -48,9 +48,8 @@ const RequestsProvider: React.FC<{ children: React.ReactNode }> = ({ children })
             setData((prev)  => 
                 prev.map((item) => (item.id === id ? { ...item, ...newData } : item))
             );
-            console.log(newData);
         } catch (err) {
-            setError('Erro ao atualizar dado.');
+            setError('Error updating data.');
             console.error(err);
         }
     };
@@ -60,7 +59,7 @@ const RequestsProvider: React.FC<{ children: React.ReactNode }> = ({ children })
             await axios.delete(`${url}/${id}`);
             setData((prev) => prev.filter((data) => data.id !== id));
         } catch (err) {
-            setError('Erro ao deletar dado.');
+            setError('Error deleting data.');
             console.error(err);
         }
     };
