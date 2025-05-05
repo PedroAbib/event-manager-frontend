@@ -13,7 +13,7 @@ const Profile = <T extends { id: string | number }>({ entityData, closeModalAfte
     const { deleteData } = useRequests<T>();
 
     const handleDelete = () => {
-        if (window.confirm('Tem certeza que deseja deletar este registro?')) {
+        if (window.confirm('Are you sure you want to delete this record?')) {
             deleteData(apiUrl, String(entityData.id));
             closeModalAfterDelete();
         }
