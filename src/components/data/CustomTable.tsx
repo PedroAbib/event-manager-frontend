@@ -68,7 +68,11 @@ const CustomTable = <T extends { id: string | number}>({ columns, data, titleKey
                     title={openProfileModal[titleKey] as string}
                     onClose={handleCloseProfileModal}
                 >
-                    <Profile entityData={openProfileModal} closeModalAfterDelete={handleCloseProfileModal} apiUrl={apiUrl}/>
+                    <Profile 
+                        entityData={openProfileModal} 
+                        closeModalAfterDelete={handleCloseProfileModal} 
+                        apiUrl={apiUrl}
+                    />
                 </Modal>
             )}
         </div>

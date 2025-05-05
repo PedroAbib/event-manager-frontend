@@ -1,11 +1,29 @@
 import { useState, createContext } from 'react';
 import axios from 'axios';
+import { Registrant } from '../interfaces/Registrant';
+import { Event } from '../interfaces/Event';
+import { Participant } from '../components/data/ParticipantsTable';
+
+interface dataType {
+    events: {
+        data: Event[];
+        loading: boolean;
+        error: string | null;
+    };
+    registrants: {
+        data: Registrant[];
+        loading: boolean;
+        error: string | null;
+    };
+}
 
 interface RequestsContextType<T extends { id: string | number }> {
     data: T[];
+    participants: Participant[];
     loading: boolean;
     error: string | null;
     fetchData: (url: string) => Promise<void>;
+    fetchParticipants: (url: string) => Promise<void>;
     addData: (url: string, data: T) => Promise<void>;
     updateData: (url: string, id: string | number, newData: Partial<T>) => Promise<void>;
     deleteData: (url: string, id: string) => Promise<void>;
@@ -15,6 +33,7 @@ const RequestsContext = createContext<RequestsContextType<any> | undefined>(unde
 
 const RequestsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [data, setData] = useState<any[]>([]);
+    const [participants, setParticipants] = useState<Participant[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -26,6 +45,20 @@ const RequestsProvider: React.FC<{ children: React.ReactNode }> = ({ children })
             setData(response.data);
         } catch (err) {
             setError('Error fetching data.');
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const fetchParticipants = async (url: string) => {
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await axios.get(url);
+            setParticipants(response.data);
+        } catch (err) {
+            setError('Error fetching Participants.');
             console.error(err);
         } finally {
             setLoading(false);
@@ -65,7 +98,7 @@ const RequestsProvider: React.FC<{ children: React.ReactNode }> = ({ children })
     };
 
     return (
-        <RequestsContext.Provider value={{ data, loading, error, fetchData, addData, updateData, deleteData }}>
+        <RequestsContext.Provider value={{ data, participants, loading, error, fetchData, fetchParticipants, addData, updateData, deleteData }}>
             {children}
         </RequestsContext.Provider>
     );
